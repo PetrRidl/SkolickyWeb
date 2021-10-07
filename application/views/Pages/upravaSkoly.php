@@ -10,4 +10,4 @@
 <br>
 <br>
 
-<h3 class="ram">Zde bude úprava školy.</h3>
+<div class="ram">Zde bude úprava školy.</div>

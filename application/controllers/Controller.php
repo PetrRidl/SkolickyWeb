@@ -27,8 +27,10 @@ class Controller extends CI_Controller
     }
     public function vypisSkol()
     {
+        $data["skola"] = $this->Model->vypisPrijeti();
+
         $this->load->view('templates/Header_logout');   
-        $this->load->view('pages/vypisSkol');
+        $this->load->view('pages/vypisSkol', $data);
 		$this->load->view('templates/footer');
     }
     public function upravaSouradnic()
@@ -49,4 +51,28 @@ class Controller extends CI_Controller
         $this->load->view('pages/pridaniSkoly');
 		$this->load->view('templates/footer');
     }
+    public function zapisNoveSkoly()
+	{
+
+
+                $data = array(  
+                     "vyrobce"     =>$this->input->post("vyrobce"),  
+                     "typ_vozu"  =>$this->input->post("typ_vozu"),
+                     "rok_vyroby"    =>$this->input->post("rok_vyroby"),  
+                     "registracni_znacka"   =>$this->input->post("registracni_znacka"),  
+                     "obsah_motoru"     =>$this->input->post("obsah_motoru"),
+					 "prevodovka"     =>$this->input->post("prevodovka"));
+
+				$this->Model->ulozAuto($data);		 
+					    
+			
+		$data["auta"] = $this->Model->vypisAut();
+		
+
+		$this->load->view('templates/header_admin');
+		$this->load->view('pages/objednavka');
+		$this->load->view('pages/vypis_aut', $data);
+		$this->load->view('templates/footer');
+	}
+
 }    
