@@ -22,7 +22,7 @@
     </style>  
         <script>
     $(document).ready( function () {
-    $('uprava').DataTable();
+    $('#uprava').DataTable();
 } );
 </script>   
     <body>
@@ -39,6 +39,9 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="<?php base_url()?>vypisMapa">Ukázka na mapě</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?php base_url()?>zapis">Přidání nové školy</a>
                     </li>
                     <li class="nav-item active">
                          <a class="nav-link" href="<?php base_url()?>odhlaseni">Odhlášení</a>

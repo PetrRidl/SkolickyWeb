@@ -60,3 +60,5 @@ $route['pridaniSkoly'] = 'Controller/pridaniSkoly';
 $route['upravaSouradnic'] = 'Controller/upravaSouradnic';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['zapis'] = 'Controller/pridaniSkoly';
+$route['zapisSkoly'] = 'Controller/zapisSkoly';

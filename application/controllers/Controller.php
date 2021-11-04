@@ -21,36 +21,56 @@ class Controller extends CI_Controller
     } 
     public function vypisNaMapu()
     {
+        $data["vypis_skoly"] = $this->Model->vypisPrijeti();
+
         $this->load->view('templates/Header_logout');   
-        $this->load->view('pages/vypisNaMapu');
+        $this->load->view('pages/vypisNaMapu', $data);
 		$this->load->view('templates/footer');
     }
     public function vypisSkol()
     {
         $data["skola"] = $this->Model->vypisPrijeti();
 
-        $this->load->view('templates/Header_logout');   
+        if(!$this->ion_auth->logged_in())$this->load->view('templates/Header_logout');
+		else $this->load->view('templates/header_admin'); 
         $this->load->view('pages/vypisSkol', $data);
 		$this->load->view('templates/footer');
     }
-    public function upravaSouradnic()
-    {
-        $this->load->view('templates/Header_admin');   
-        $this->load->view('pages/upravaSouradnic');
-		$this->load->view('templates/footer');
-    }
-    public function upravaSkol()
-    {
-        $this->load->view('templates/Header_admin');   
-        $this->load->view('pages/upravaSkoly');
-		$this->load->view('templates/footer');
-    }
+
     public function pridaniSkoly()
     {
+        $data["mesta"] = $this->Model->vypisMest();
+
         $this->load->view('templates/Header_admin');   
-        $this->load->view('pages/pridaniSkoly');
+        $this->load->view('pages/pridaniSkoly', $data);
 		$this->load->view('templates/footer');
     }
+    public function zapisSkoly()
+    {
+        $this->load->library('form_validation');  
+        $this->form_validation->set_rules("nazev", "nazev", 'required');  
+        $this->form_validation->set_rules("mesto", "mesto", 'required|numeric');  
+        $this->form_validation->set_rules("geo_lat", "geo_lat", 'required');
+        $this->form_validation->set_rules("geo_long", "geo_long", 'required');
+  
+        if($this->form_validation->run())  
+        {  
+             $data = array(  
+                  "nazev"     =>$this->input->post("nazev"),  
+                  "mesto"  =>$this->input->post("mesto"),
+                  "geo_lat"     =>$this->input->post("geo_lat"), 
+                  "geo_long"     =>$this->input->post("geo_long"));
+
+                  $this->Model->NovaSkola($data);  
+        } 
+        
+        if(!$this->ion_auth->logged_in())$this->load->view('templates/Header_logout');
+		else $this->load->view('templates/header_admin');
+                $this->load->view('pages/hlavni_strana');
+		$this->load->view('templates/footer');
+    }
+
+
 
 
 }    

@@ -6,11 +6,11 @@
 
 }
 button{
-    background-color: #0E66F7;
+    background-color: #0275d8;
     color: white;
     text-align: center;
     margin-left: 45%;
-    border: 2px solid #0E66F7;
+    border: 2px solid #0275d8;
     border-radius: 15px;
     padding: 15px 32px;
     transition-duration: 0.5s;
@@ -21,21 +21,40 @@ button{
 <br>
 <br>
 <br>
-<form method="post" action='<?php echo base_url();?>/HlavniStrana/zapisObjednavky'>
+<form method="post" action='<?php echo base_url();?>zapisSkoly'>
     <div class="form-group">
-        <label>Výrobce vozu</label>
-        <input type="text" name='vyrobce' class="form-control">
-        <label>Typ vozu</label>
-        <input type="text" name='typ_vozu' class="form-control">
-        <label>Registrační značka</label>
-        <input type="text" name='registracni_znacka' class="form-control">
-        <label>Rok výroby</label>
-        <input type="text" name='rok_vyroby' class="form-control">
-        <label>Obsahu motoru</label>
-        <input type="text" name='obsah_motoru' class="form-control">
-        <label>Převodovka</label>
-        <input type="text" name='prevodovka' class="form-control">
-        </br>
+        <label>Název</label>
+        <input type="text" name='nazev' class="form-control">
+        <label>Číslo města</label>
+        <input type="number" name='mesto' class="form-control">
+        <label>Geo-lat</label>
+        <input type="text" name='geo_lat' class="form-control">
+        <label>Geo-long</label>
+        <input type="text" name='geo_long' class="form-control">
+</br>
         <button type="submit">Přidat</button>
+
+        
+
     </div>
 </form>
+<table id="uprava" class="table">
+        <thead>
+            <tr>
+                <th scope="col">Číslo města</th>
+                <th scope="col">Název</th>
+            </tr>    
+
+        </thead>
+        <tbody>
+            <?php foreach($mesta as $m): ?>
+                <tr>
+                    <td> <?php echo $m->id; ?></td>
+                    <td> <?php echo $m->nazev; ?></td>
+
+                </tr>    
+
+            <?php endforeach; ?>    
+        </tbody>        
+    </table>
+       
