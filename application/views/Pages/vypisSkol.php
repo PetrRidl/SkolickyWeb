@@ -1,3 +1,4 @@
+
 <style>
 .ram{
     width: 100%;
@@ -9,9 +10,9 @@
 <br>
 <br>
 <br>
-
+  
 <div class="ram">
-    <table class="table">
+    <table id="uprava" class="table">
         <thead>
             <tr>
                 <th scope="col">Název školy</th>
